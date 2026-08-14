@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FastAPI Feedback Form</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f2f2f2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    width:420px;
+    background:#fff;
+    padding:30px;
+    border-radius:8px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+h2{
+    margin-bottom:20px;
+    color:#222;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:4px;
+    font-size:15px;
+}
+
+input:focus,
+textarea:focus{
+    outline:none;
+    border-color:#4CAF50;
+}
+
+textarea{
+    resize:none;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#222;
+    color:white;
+    border:none;
+    border-radius:4px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#444;
+}
+
+h3{
+    margin-top:20px;
+    margin-bottom:10px;
+}
+
+#response{
+    border:1px solid #ccc;
+    border-radius:4px;
+    padding:12px;
+    min-height:60px;
+    background:#fafafa;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>FastAPI Feedback Form</h2>
+
+    <form id="feedbackForm">
+
+        <input type="text" id="name" placeholder="Student Name" required>
+
+        <input type="text" id="topic" placeholder="Topic" required>
+
+        <input type="number" id="rating" placeholder="Rating 1 to 5" min="1" max="5" required>
+
+        <textarea id="comment" rows="4" placeholder="Comment" required></textarea>
+
+        <button type="submit">Submit Feedback</button>
+
+    </form>
+
+    <h3>Response</h3>
+
+    <div id="response"></div>
+
+</div>
+
+<script>
+document.getElementById("feedbackForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let topic = document.getElementById("topic").value;
+    let rating = document.getElementById("rating").value;
+    let comment = document.getElementById("comment").value;
+
+    document.getElementById("response").innerHTML =
+        "<b>Name:</b> " + name + "<br>" +
+        "<b>Topic:</b> " + topic + "<br>" +
+        "<b>Rating:</b> " + rating + "/5<br>" +
+        "<b>Comment:</b> " + comment;
+
+    document.getElementById("feedbackForm").reset();
+});
+</script>
+
+</body>
+</html>
